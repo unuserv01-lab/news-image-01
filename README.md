@@ -1,63 +1,52 @@
-# news-image-01 entry round 2 — "13 November 2026 in One Image"
+# news-image-01 — round 3: "The Table"
 
-A poster (1024×1024 PNG, 79,305 bytes) summing up the world news of
-Friday 13 November 2026 in 8 panels, 2 columns × 4 rows, under a navy
-header "13 NOVEMBER 2026 / WORLD NEWS IN ONE IMAGE".
+One image summing up the world news of Friday 13 November 2026.
+
+## The idea
+
+One frame, one table. A forced-perspective conference table runs
+diagonally from the bottom-left foreground to the top-right
+background, and the day's five stories sit on it or just off it:
+
+| Where | Story |
+|---|---|
+| Far end | Ukraine peace talks — two delegations, UA + EU flags |
+| Mid-table | 4 tankers attacked in the Strait of Hormuz (model + seal) |
+| Centre | Microsoft 365 global outage — cracked blue tablet, long shadow |
+| Near edge | DOJ seizure of $1.2B in crypto — ticker tape, big orange type |
+| Floor | Brooklyn building collapse, 8 dead — chalk outline + marker 8 |
+
+The masthead dates it: "FRIDAY, 13 NOVEMBER 2026".
+
+## Why one frame, not a grid
+
+Round 2 was an 8-panel grid. The grid shrank every story to
+postage-stamp size and read as generic infographic filler. One table
+forces a single composition: the eye travels the table from the
+delegations at the far end to the chalk outline at the near end, and
+each story is an object, not a cell.
 
 ## How the image was made
 
-Round 1 was a single AI-rendered image. For round 2 the poster was
-redrawn as **flat vector art with a Pillow script**
-(`~/workspace/makefun/news-image-v2-work/draw.py`, build artifact, not
-part of this entry): every scene is drawn from shapes and every word is
-real text in DejaVu Sans Bold, so no caption can come out garbled and
-every factual fix below is exactly as intended. The program
-(`main.py`, stdlib only, no network) copies `assets/entry.png`
-byte-for-byte to `$MAKEFUN_OUTPUT_DIR/entry.png` (default `/output`),
-verifying PNG magic bytes, dimensions ≤ 1024×1024 and size ≤ 1 MiB.
+Flat vector art drawn programmatically with Pillow
+(`../news-image-v3-work/draw_v3.py`, not part of this entry):
+charcoal, safety orange, off-white, one blue, one yellow accent;
+hard shadows, no gradients. Every word is real text rendered by the
+script, so no caption can come out garbled. Two facts were checked
+against the 13 Nov news brief before drawing: the Brooklyn deaths
+were a building collapse, not a shooting; the tankers were attacked
+in the Strait of Hormuz.
 
-## The 8 panels
+## The program
 
-1. **GULF TANKERS HIT / 4 TANKERS ATTACKED** — two tankers burning in
-   the Strait of Hormuz at dusk, black smoke, orange glow on the sea.
-2. **UKRAINE TALKS / EUROPE JOINS NEXT ROUND** — two delegations seated
-   opposite each other at a long table with documents, Ukrainian flag on
-   one side, Russian flag on the other, talking. No handshake.
-3. **NVIDIA CEO OUT / HUANG RESIGNS** — a large green computer chip on
-   a desk beside an empty CEO office chair.
-4. **MICROSOFT 365 DOWN / GLOBAL OUTAGE** — laptop and phone screens
-   with red error crosses under a dark storm cloud with lightning, a
-   disconnected plug and socket, servers with red lights.
-5. **SENATE SHOWDOWN / VAN HOLLEN v SCHUMER** — two senators arguing
-   face to face in front of the US Capitol dome.
-6. **BROOKLYN COLLAPSE / 8 DEAD** — a collapsed brick apartment
-   building with a jagged broken edge, rubble, rescue workers in orange
-   vests and yellow helmets.
-7. **$1.2B CRYPTO SEIZED / DOJ SEIZES HACK FUNDS** — a large golden
-   Bitcoin coin with handcuffs in front of a courthouse.
-8. **POPE IN PERU / MEETS ABUSE VICTIMS** — the Pope in white waving
-   to a crowd in a colourful Peruvian street, Peruvian flags.
+`main.py` (Python 3.13, standard library only) copies
+`assets/entry.png` (1024x1024, 70,592 bytes) verbatim to
+`$MAKEFUN_OUTPUT_DIR/entry.png`. It validates the PNG first (magic,
+IHDR dimensions, trailing IEND chunk, size limits) and re-reads what
+it wrote to compare hashes, so two runs are byte-identical.
 
-## What changed from round 1
+Run it:
 
-- **Ukraine:** round 1 showed a handshake, implying a deal was done.
-  Round 2 shows the delegations seated across the table in discussion,
-  hands on the table apart — talks ongoing, no deal (per the brief:
-  Russia agreed Europe joins the *next* round).
-- **Brooklyn:** round 1 showed only rubble. Round 2 puts **"8 DEAD"**
-  in the gold subline, so the death toll reads at a glance.
-- **Microsoft:** round 1 was only a cloud icon. Round 2 shows error
-  screens, a storm cloud with lightning, a disconnected plug and red
-  server lights — a global outage, not just a cloud.
-- **Key figures in captions:** "4 TANKERS", "8 DEAD" and "$1.2B" (plus
-  the other sublines) are now printed in gold under each headline.
-- **Size:** round 1 was 1,018,800 bytes, almost at the 1 MiB limit.
-  Round 2 is 79,305 bytes — flat vector art compresses far better,
-  leaving huge headroom.
-- **Legibility:** verified at 300 px across — all headlines and
-  sublines stay readable.
-
-## Sources
-
-All 8 stories follow `~/workspace/makefun/news-13-nov-2026-brief.md`
-(13 Nov 2026 news brief). No story added, removed, or invented.
+```sh
+mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py
+```
