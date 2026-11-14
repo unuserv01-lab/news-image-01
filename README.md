@@ -1,50 +1,63 @@
-# news-image-01 — 13 November 2026 in one image
+# news-image-01 entry round 2 — "13 November 2026 in One Image"
 
-Entry for the make.fun competition **news-image-01**:
-*"Sum up 13 November's world news in one image"* (program/v1).
+A poster (1024×1024 PNG, 79,305 bytes) summing up the world news of
+Friday 13 November 2026 in 8 panels, 2 columns × 4 rows, under a navy
+header "13 NOVEMBER 2026 / WORLD NEWS IN ONE IMAGE".
 
-## What the image shows
+## How the image was made
 
-A newspaper front-page collage (976×976 PNG) with the headline
-**"13 NOVEMBER 2026 — WORLD NEWS IN ONE IMAGE"** and eight illustrated
-panels, one per story, each with a short caption:
+Round 1 was a single AI-rendered image. For round 2 the poster was
+redrawn as **flat vector art with a Pillow script**
+(`~/workspace/makefun/news-image-v2-work/draw.py`, build artifact, not
+part of this entry): every scene is drawn from shapes and every word is
+real text in DejaVu Sans Bold, so no caption can come out garbled and
+every factual fix below is exactly as intended. The program
+(`main.py`, stdlib only, no network) copies `assets/entry.png`
+byte-for-byte to `$MAKEFUN_OUTPUT_DIR/entry.png` (default `/output`),
+verifying PNG magic bytes, dimensions ≤ 1024×1024 and size ≤ 1 MiB.
 
-| Panel | Caption | Story (13 Nov 2026) |
-|---|---|---|
-| 1 | GULF TANKERS HIT | Escalation in the Gulf: four tankers attacked in the Strait of Hormuz; Iran's Revolutionary Guard claimed to have destroyed a US early-warning radar in Bahrain (claim, unverified) |
-| 2 | UKRAINE TALKS | Russia agreed to Europe joining the next round of peace talks; a planned Russia–Ukraine prisoner exchange was described as potentially the largest of the war |
-| 3 | NVIDIA CEO OUT | Founder Jensen Huang resigned as Nvidia CEO and left the board; CFO Colette Kress became interim CEO |
-| 4 | MICROSOFT 365 DOWN | Global Microsoft 365 outage: Outlook, Teams and Copilot down, ~130,000 problem reports in the US; Microsoft said it was not a cyberattack |
-| 5 | SENATE SHOWDOWN | Senator Chris Van Hollen challenged Chuck Schumer for US Senate majority leadership; closed vote set for 1 December |
-| 6 | BROOKLYN COLLAPSE | A three-storey building collapsed in Flatbush Ave, Brooklyn: 8 dead, 18 injured |
-| 7 | $1.2B CRYPTO SEIZED | A US court allowed the seizure of $1.2 billion in crypto from the 29 Oct Binance hack, linked by the FBI to a North Korean military hacker unit (denied by Pyongyang) |
-| 8 | POPE IN PERU | Pope Leo XIV met six clerical-abuse survivors in Peru, amid record crowds in Lima |
+## The 8 panels
 
-The image is designed to stand alone: a judge with no news feed can read
-the date, the eight stories, and the short captions at a glance. Claims
-that were unverified at the time (e.g. the radar claim) are presented only
-as the event they were reported to be, without adding invented detail.
+1. **GULF TANKERS HIT / 4 TANKERS ATTACKED** — two tankers burning in
+   the Strait of Hormuz at dusk, black smoke, orange glow on the sea.
+2. **UKRAINE TALKS / EUROPE JOINS NEXT ROUND** — two delegations seated
+   opposite each other at a long table with documents, Ukrainian flag on
+   one side, Russian flag on the other, talking. No handshake.
+3. **NVIDIA CEO OUT / HUANG RESIGNS** — a large green computer chip on
+   a desk beside an empty CEO office chair.
+4. **MICROSOFT 365 DOWN / GLOBAL OUTAGE** — laptop and phone screens
+   with red error crosses under a dark storm cloud with lightning, a
+   disconnected plug and socket, servers with red lights.
+5. **SENATE SHOWDOWN / VAN HOLLEN v SCHUMER** — two senators arguing
+   face to face in front of the US Capitol dome.
+6. **BROOKLYN COLLAPSE / 8 DEAD** — a collapsed brick apartment
+   building with a jagged broken edge, rubble, rescue workers in orange
+   vests and yellow helmets.
+7. **$1.2B CRYPTO SEIZED / DOJ SEIZES HACK FUNDS** — a large golden
+   Bitcoin coin with handcuffs in front of a courthouse.
+8. **POPE IN PERU / MEETS ABUSE VICTIMS** — the Pope in white waving
+   to a crowd in a colourful Peruvian street, Peruvian flags.
 
-## How to run
+## What changed from round 1
 
-Requires Python 3.13 (standard library only, no dependencies):
+- **Ukraine:** round 1 showed a handshake, implying a deal was done.
+  Round 2 shows the delegations seated across the table in discussion,
+  hands on the table apart — talks ongoing, no deal (per the brief:
+  Russia agreed Europe joins the *next* round).
+- **Brooklyn:** round 1 showed only rubble. Round 2 puts **"8 DEAD"**
+  in the gold subline, so the death toll reads at a glance.
+- **Microsoft:** round 1 was only a cloud icon. Round 2 shows error
+  screens, a storm cloud with lightning, a disconnected plug and red
+  server lights — a global outage, not just a cloud.
+- **Key figures in captions:** "4 TANKERS", "8 DEAD" and "$1.2B" (plus
+  the other sublines) are now printed in gold under each headline.
+- **Size:** round 1 was 1,018,800 bytes, almost at the 1 MiB limit.
+  Round 2 is 79,305 bytes — flat vector art compresses far better,
+  leaving huge headroom.
+- **Legibility:** verified at 300 px across — all headlines and
+  sublines stay readable.
 
-```sh
-python3 main.py
-```
+## Sources
 
-This writes the image to `/output/entry.png` (creating `/output` if
-needed). The program copies `assets/entry.png` verbatim and validates it
-against the competition limits (≤ 1 MiB, ≤ 1024×1024) before writing, so
-two runs produce byte-identical output.
-
-## Files
-
-- `main.py` — the entry program (Python 3.13, stdlib only)
-- `assets/entry.png` — the collage image (976×976, 1,018,800 bytes)
-- `LICENSE` — MIT
-- `README.md` — this file
-
-## License
-
-MIT — see `LICENSE`.
+All 8 stories follow `~/workspace/makefun/news-13-nov-2026-brief.md`
+(13 Nov 2026 news brief). No story added, removed, or invented.
